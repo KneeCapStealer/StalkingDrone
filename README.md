@@ -16,6 +16,7 @@ The drone will be programmed using the library [DjiTelloPy](https://github.com/d
 - Mulighed for remote styring med controller eller gennem selvskrevet kode.
 - Utrolig stabil flyvning i 13 minutters intervaller før batteriet går tør.
 - 720P live camera feed der kan tilgås med kode.
+
 ![image](https://github.com/KneeCapStealer/StalkingDrone/assets/104348534/20f25577-dc77-46e5-a904-ca567fc93f76)
 
 ### Hvilke teknologier sidder i dronen?
@@ -25,6 +26,8 @@ The drone will be programmed using the library [DjiTelloPy](https://github.com/d
 - Barometrisk tryk sensor
 - 6-akse gyro og accelerometer system.
 - 720p 5MP kamera
+
+![image](https://github.com/KneeCapStealer/StalkingDrone/blob/main/pictures/GitHUB%20pictures/dji_tello_features.png?raw=true)
 
 ### Hvordan holder den sig i luften?
 Propeller og motorere 🙂
@@ -42,7 +45,8 @@ https://www.compsmag.com/reviews/dji-ryze-tello-review/
   movement to determine the drone's position relative to the ground. This is particularly useful for maintaining stability when flying at lower
   altitudes where GPS signals might be weaker or less accurate.
   https://www.compsmag.com/reviews/dji-ryze-tello-review/
-  ![Stavbility picture](https://github.com/KneeCapStealer/StalkingDrone/blob/main/pictures/GitHUB%20pictures/DJI_tello_stability.png?raw=true)
+  
+  ![image](https://github.com/KneeCapStealer/StalkingDrone/blob/main/pictures/GitHUB%20pictures/DJI_tello_stability.png?raw=true)
 
 - #### Barometric Pressure Sensor:
   The drone also has a barometric pressure sensor that measures the air pressure at its current altitude. By using this information, the drone can
@@ -64,7 +68,7 @@ https://www.compsmag.com/reviews/dji-ryze-tello-review/
 ### Hvordan kan man programmere den? – Og med hvilke værktøjer/sprog?
 - Dronen kan progammeres normalt med python eller swift eller med visual scripting i scratch.
 
-#### Hvad skal der til for at komme i gang med python?
+### Hvad skal der til for at komme i gang med python?
 I python skal man installere et library kaldet DjiTelloPy, hvilket giver os en masse indbygget kommandoer til at få dronen til at flyve som vi vil.
 
 
