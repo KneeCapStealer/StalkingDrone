@@ -1,21 +1,26 @@
 import cv2
 from djitellopy import Tello
 
-tello = Tello()
 
-tello.connect()
+def main():
+    tello = Tello()
 
-tello.streamon()
+    tello.connect()
 
-frame_read = tello.get_frame_read()
+    tello.streamon()
 
-tello.takeoff()
+    frame_read = tello.get_frame_read()
 
-tello.move_up(200)
+    tello.takeoff()
 
-cv2.imwrite("picture3.png", frame_read.frame)
+    tello.move_up(200)
 
-tello.land()
+    cv2.imwrite("picture3.png", frame_read.frame)
 
-tello.streamoff()
+    tello.land()
 
+    tello.streamoff()
+
+
+if __name__ == "__main__":
+    main()
