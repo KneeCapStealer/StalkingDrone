@@ -8,16 +8,16 @@ import wasd
 
 
 def main():
-    MOVESTEPS = 10
-    TURNSTEPS = 10
-    UPDOWNSTEPS = 5
+    MOVE_STEPS = 10
+    TURN_STEPS = 10
+    UP_DOWN_STEPS = 5
 
     tello = Tello()
 
     # Main loop
     running = True
     while running:
-        wasd.WASD_control(tello, MOVESTEPS, TURNSTEPS, UPDOWNSTEPS)  # Control drone using WASD and arrow keys
+        wasd.WASD_control(tello, MOVE_STEPS, TURN_STEPS, UP_DOWN_STEPS)  # Control drone using WASD and arrow keys
 
         if keyboard.is_pressed('esc'):
             running = False
