@@ -1,26 +1,28 @@
+# Modules
 import cv2
 from djitellopy import Tello
+import keyboard
+
+# Own Scripts
+import wasd
 
 
 def main():
+    MOVESTEPS = 10
+    TURNSTEPS = 10
+    UPDOWNSTEPS = 5
+
     tello = Tello()
 
-    tello.connect()
+    # Main loop
+    running = True
+    while running:
+        wasd.WASD_control(tello, MOVESTEPS, TURNSTEPS, UPDOWNSTEPS)  # Control drone using WASD and arrow keys
 
-    tello.streamon()
-
-    frame_read = tello.get_frame_read()
-
-    tello.takeoff()
-
-    tello.move_up(200)
-
-    cv2.imwrite("picture3.png", frame_read.frame)
-
-    tello.land()
-
-    tello.streamoff()
+        if keyboard.is_pressed('esc'):
+            running = False
 
 
 if __name__ == "__main__":
     main()
+    quit('Exit_Success')
