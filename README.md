@@ -42,7 +42,7 @@ https://www.compsmag.com/reviews/dji-ryze-tello-review/
   movement to determine the drone's position relative to the ground. This is particularly useful for maintaining stability when flying at lower
   altitudes where GPS signals might be weaker or less accurate.
   https://www.compsmag.com/reviews/dji-ryze-tello-review/
-  ![Stavbility picture](pictures/GitHUB pictures/DJI_tello_stability.png)
+  ![Stavbility picture](https://github.com/KneeCapStealer/StalkingDrone/blob/main/pictures/GitHUB%20pictures/DJI_tello_stability.png?raw=true)
 
 - #### Barometric Pressure Sensor:
   The drone also has a barometric pressure sensor that measures the air pressure at its current altitude. By using this information, the drone can
