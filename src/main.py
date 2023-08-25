@@ -1,21 +1,21 @@
 import cv2
+from time import sleep
 from djitellopy import Tello
 
+# Custom Scripts
+
+import record
+
 tello = Tello()
-
 tello.connect()
-
 tello.streamon()
 
-frame_read = tello.get_frame_read()
+recorder = record.Recorder(tello)
+recorder.open_live_recording()
 
 tello.takeoff()
 
-tello.move_up(200)
-
-cv2.imwrite("picture3.png", frame_read.frame)
-
+sleep(15)
 tello.land()
-
 tello.streamoff()
-
+quit()
