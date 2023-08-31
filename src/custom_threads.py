@@ -2,10 +2,9 @@ import threading
 
 
 class Thread(threading.Thread):
-    def __init__(self, func, *args):
-        new_args = (func, for n in args)
+    def __init__(self, func, *args, **kwargs):
 
-        super().__init__(target= self._thread_function, args= new_args)
+        super().__init__(target= lambda: self._thread_function(func, *args, **kwargs))
         self._pause = threading.Event()
         self._stop = threading.Event()
 
@@ -22,9 +21,9 @@ class Thread(threading.Thread):
         else:
             self._pause.clear()
 
-    def _thread_function(self, func, *args):
+    def _thread_function(self, func, *args, **kwargs):
         while not self._stop.is_set():
             if self._pause.is_set():
                 continue
 
-            func(args)
+            func(*args, **kwargs)
