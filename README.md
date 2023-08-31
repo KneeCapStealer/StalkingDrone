@@ -10,6 +10,13 @@ OpenCV means 'Open Computer Vision', Computer vision is a term used to describe 
 ### The Drone
 The drone will be programmed using the library [DjiTelloPy](https://github.com/damiafuentes/DJITelloPy) with this library we can connect to the drone using wi-fi. From the library we can oder the drone to move, turn, start and stop. Furthermore we can get input from it's camera. We can then use this input together with OpenCV and then tell the drone where to fly via the output from OpenCV.
 
+# Opgaver
+## 31-08-23
+- Få maskinen i luften [✔]
+- Lav en bane med tape og få dronen til at følge den [X] - Vi nåede det ikke pga. huevalgt, men vi har lavet mere fremskridt på vores projekt istedet. Tilføjet en klasse der udvider python threads så vi kan pause og stoppe dem. Det skal bruges til at sende signaler til dronen da djitellopy fryser hele programmet hvis vi ikke bruger multithreading.
+- Prøv at få billeder fra dronen og få dem vist på computeren[✔]
+- Prøv at få kodeeksemplet med objekt eller farvegenkendelse til at virke – Test evt ved at holde dronen uden at flyve.[X] - Det her skal vi gøre næste gang da vi bruger OpenCV til at finde mennesker
+
 ## Further Research
 
 ### Hvad giver den af muligheder og begrænsninger?
