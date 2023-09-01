@@ -19,7 +19,13 @@ def test(var1, bob, foo):
     print(foo)
 
 
-t = custom_threads.Thread(test, bob='hello', var1=21, foo=False)
+lock = threading.Lock()
 
+t = custom_threads.LoopThread(test, 'hello', 21, False)
+t2 = custom_threads.LoopThread(test, 'oh shied', 55, True)
+
+t2.start()
 t.start()
+t.pause(True)
+t2.stop()
 t.stop()
