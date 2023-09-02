@@ -12,10 +12,17 @@ The drone will be programmed using the library [DjiTelloPy](https://github.com/d
 
 # Opgaver
 ## 31-08-23
+Vi nåede desværre ikke at implimentere det til dronen, men vi fik kigget lidt på koden.
 - Få maskinen i luften [✔]
 - Lav en bane med tape og få dronen til at følge den [X] - Vi nåede det ikke pga. huevalgt, men vi har lavet mere fremskridt på vores projekt istedet. Tilføjet en klasse der udvider python threads så vi kan pause og stoppe dem. Det skal bruges til at sende signaler til dronen da djitellopy fryser hele programmet hvis vi ikke bruger multithreading.
 - Prøv at få billeder fra dronen og få dem vist på computeren[✔]
 - Prøv at få kodeeksemplet med objekt eller farvegenkendelse til at virke – Test evt ved at holde dronen uden at flyve.[X] - Det her skal vi gøre næste gang da vi bruger OpenCV til at finde mennesker
+
+### Erfaringer
+Noget vi lagde mærke til i de 2 kode eksempler i opgaven, var den måde de sendte signaler til dronen.
+Deres metode var langt bedre end vores var. De brugte en kommando der hed `[send_rc_control](https://djitellopy.readthedocs.io/en/latest/tello/#djitellopy.tello.Tello.send_rc_control)` som kan bruges til at sende mange signaler på samme tid istedet for at sende dem individuelt. Det skal vi 100% have implimenteret i vores project.
+
+Derudover skal vi også kigge nærmere hvordan de tracker deres objecter som inspiration til vores eget project. Da vi nok skal gøre det meget ens.
 
 ## Further Research
 
