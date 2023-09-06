@@ -1,5 +1,12 @@
-import custom_threads
+# Python standard libraries
 import threading
+
+# Imported libraries
+from djitellopy import Tello
+import cv2
+
+# Own Scripts
+import custom_threads
 
 
 class DroneController:
@@ -10,9 +17,15 @@ class DroneController:
             self.w: float = 0
             self.h: float = 0
 
-    def __init__(self):
+    def __init__(self, drone: Tello):
         self.tracking_data: DroneController.TrackingData = DroneController.TrackingData()
-        self.lock = threading.Lock()
+        self._lock = threading.Lock()
+        self.drone = drone
+        self.frame_read = drone.get_frame_read()
+
+        self._rects = 0
+        self._weights = 0
+
         self.tracking_thread = custom_threads.LoopThread(self._tracking_control)
         self.WASD_thread = custom_threads.LoopThread(self._WASD_control)
 
@@ -41,7 +54,27 @@ class DroneController:
         pass
 
     def _track_humans(self):
-        pass
+        Hog = cv2.HOGDescriptor()
+        Hog.setSVMDetector(cv2.HOGDescriptor.getDefaultPeopleDetector())
+
+        height, width, _ = self.frame_read.frame.shape
+        frame = cv2.resize(self.frame_read.frame, (width, height))
+        gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+        self._rects, self._weights = Hog.detectMultiScale(gray_frame, winStride=(4, 4), padding=(4, 4), scale=1.05)
+
+        # TODO: implement switching between targets
+        # Currently the best target with the highest score is tracked
+        bestWeightIndex = self._weights.index(max(self._weights))
+
+        self._lock.acquire()
+        self.tracking_data.x = self._rects[bestWeightIndex][0]
+        self.tracking_data.y = self._rects[bestWeightIndex][1]
+        self.tracking_data.w = self._rects[bestWeightIndex][2]
+        self.tracking_data.h = self._rects[bestWeightIndex][3]
+        self._lock.release()
+
+
 
     def _WASD_control(self):
         pass
