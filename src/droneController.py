@@ -23,9 +23,10 @@ class DroneController:
         self.drone = drone
         self.frame_read = drone.get_frame_read()
 
-        self._rects = 0
-        self._weights = 0
+        self._rects: tuple
+        self._weights: tuple
 
+        # Drone control branches
         self.tracking_thread = custom_threads.LoopThread(self._tracking_control)
         self.WASD_thread = custom_threads.LoopThread(self._WASD_control)
 
@@ -50,6 +51,9 @@ class DroneController:
         self.WASD_thread.pause(True)
         self.tracking_thread.pause(False)
 
+    def get_current_targets(self):
+        return self._rects, self._weights
+
     def _tracking_control(self):
         pass
 
@@ -73,8 +77,6 @@ class DroneController:
         self.tracking_data.w = self._rects[bestWeightIndex][2]
         self.tracking_data.h = self._rects[bestWeightIndex][3]
         self._lock.release()
-
-
 
     def _WASD_control(self):
         pass
