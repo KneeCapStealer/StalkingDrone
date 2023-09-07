@@ -80,11 +80,13 @@ class DroneController:
 
         self._rects, self._weights = Hog.detectMultiScale(gray_frame, winStride=(4, 4), padding=(4, 4), scale=1.05)
 
+        sorted_rects = list(self._rects)
+        sorted_rects.sort(key=lambda x: x[0])
         with self._lock:
-            self.tracking_data.x = self._rects[self._tracking_index][0]
-            self.tracking_data.y = self._rects[self._tracking_index][1]
-            self.tracking_data.w = self._rects[self._tracking_index][2]
-            self.tracking_data.h = self._rects[self._tracking_index][3]
+            self.tracking_data.x = sorted_rects[self._tracking_index][0]
+            self.tracking_data.y = sorted_rects[self._tracking_index][1]
+            self.tracking_data.w = sorted_rects[self._tracking_index][2]
+            self.tracking_data.h = sorted_rects[self._tracking_index][3]
 
     def _WASD_control(self):
         pass
