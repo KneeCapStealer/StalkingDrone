@@ -23,6 +23,7 @@ class DroneController:
         self.drone = drone
         self.frame_read = drone.get_frame_read()
 
+        self._tracking_index: int = 0
         self._rects: tuple
         self._weights: tuple
 
@@ -54,6 +55,18 @@ class DroneController:
     def get_current_targets(self):
         return self._rects, self._weights
 
+    def next_target(self):
+        self._tracking_index += 1
+        self._tracking_index %= len(self._rects)
+
+    def previous_target(self):
+        self._tracking_index -= 1
+        self._tracking_index %= len(self._rects)
+
+    def set_target(self, index):
+        self._tracking_index = index
+        self._tracking_index %= len(self._rects)
+
     def _tracking_control(self):
         pass
 
@@ -67,16 +80,11 @@ class DroneController:
 
         self._rects, self._weights = Hog.detectMultiScale(gray_frame, winStride=(4, 4), padding=(4, 4), scale=1.05)
 
-        # TODO: implement switching between targets
-        # Currently the best target with the highest score is tracked
-        bestWeightIndex = self._weights.index(max(self._weights))
-
-        self._lock.acquire()
-        self.tracking_data.x = self._rects[bestWeightIndex][0]
-        self.tracking_data.y = self._rects[bestWeightIndex][1]
-        self.tracking_data.w = self._rects[bestWeightIndex][2]
-        self.tracking_data.h = self._rects[bestWeightIndex][3]
-        self._lock.release()
+        with self._lock:
+            self.tracking_data.x = self._rects[self._tracking_index][0]
+            self.tracking_data.y = self._rects[self._tracking_index][1]
+            self.tracking_data.w = self._rects[self._tracking_index][2]
+            self.tracking_data.h = self._rects[self._tracking_index][3]
 
     def _WASD_control(self):
         pass
