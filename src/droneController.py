@@ -17,11 +17,27 @@ class DroneController:
             self.w: float = 0
             self.h: float = 0
 
+    class WASDControls():
+        def __init__(self):
+            self.w: bool = False
+            self.a: bool = False
+            self.s: bool = False
+            self.d: bool = False
+            self.up: bool = False
+            self.left: bool = False
+            self.down: bool = False
+            self.right: bool = False
+
+            self.speed_up: bool = False
+            self.speed_down: bool = False
+
     def __init__(self, drone: Tello):
         self.tracking_data: DroneController.TrackingData = DroneController.TrackingData()
         self._lock = threading.Lock()
         self.drone = drone
         self.frame_read = drone.get_frame_read()
+
+        self.WASDControls: DroneController.WASDControls = DroneController.WASDControls()
 
         self._tracking_index: int = 0
         self._rects: tuple
