@@ -1,5 +1,6 @@
 # Python standard libraries
 import threading
+import numpy as np
 
 # Imported libraries
 from djitellopy import Tello
@@ -31,13 +32,23 @@ class DroneController:
             self.speed_up: bool = False
             self.speed_down: bool = False
 
-    def __init__(self, drone: Tello):
+    def __init__(self, drone: Tello, camerascreensize: tuple):
         self.tracking_data: DroneController.TrackingData = DroneController.TrackingData()
         self._lock = threading.Lock()
         self.drone = drone
         self.frame_read = drone.get_frame_read()
 
         self.WASDControls: DroneController.WASDControls = DroneController.WASDControls()
+
+        self.screen_height = camerascreensize[1]
+        self.x_mid = camerascreensize[0] / 2
+        self.y_mid = camerascreensize[1] / 2
+        self.screen_mid = [self.x_mid, self.y_mid]
+        self.left_right_velocity = 0
+        self.up_down_velocity = 0
+        self.forward_backward_velocity = 0
+        self.yaw_velocity = 0
+        self.speed = 1
 
         self._tracking_index: int = 0
         self._rects: tuple
@@ -84,7 +95,50 @@ class DroneController:
         self._tracking_index %= len(self._rects)
 
     def _tracking_control(self):
-        pass
+        self._lock.acquire()
+        tracking_rect_center_x = self.tracking_data.x + self.tracking_data.w / 2
+        tracking_rect_center_y = self.tracking_data.y + self.tracking_data.h / 2
+        tracking_rect_mid = [tracking_rect_center_x, tracking_rect_center_y]
+
+        vector_from_mid = np.array([abs(self.x_mid - tracking_rect_mid[0]), abs(self.y_mid - tracking_rect_mid[1])])
+        distance_from_mid = np.linalg.norm(vector_from_mid)
+
+        def inside_center_zone():
+            if (tracking_rect_center_x > self.x_mid * 1.1 or
+                    tracking_rect_center_x < self.x_mid * 0.9 or
+                    tracking_rect_center_y > self.y_mid * 1.1 or
+                    tracking_rect_center_y < self.y_mid * 0.9):
+                return False
+            else:
+                return True
+
+        def inside_dead_zone():
+            if (tracking_rect_center_x > self.x_mid * 1.2 or
+                    tracking_rect_center_x < self.x_mid * 0.8 or
+                    tracking_rect_center_y > self.y_mid * 1.2 or
+                    tracking_rect_center_y < self.y_mid * 0.8):
+                return False
+            else:
+                return True
+
+        move_by = self.speed * distance_from_mid
+        if not inside_center_zone() and inside_dead_zone():
+            if tracking_rect_center_x > self.x_mid:
+                self.left_right_velocity = move_by
+            else:
+                self.left_right_velocity = -move_by
+
+            if tracking_rect_center_y > self.y_mid:
+                self.up_down_velocity = -move_by
+            else:
+                self.up_down_velocity = move_by
+
+            if self.tracking_data.h > self.y_mid:
+                self.forward_backward_velocity = -move_by
+            else:
+                self.forward_backward_velocity = move_by
+        self._lock.release()
+
 
     def _track_humans(self):
         Hog = cv2.HOGDescriptor()
