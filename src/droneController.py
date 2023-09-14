@@ -139,7 +139,6 @@ class DroneController:
                 self.forward_backward_velocity = move_by
         self._lock.release()
 
-
     def _track_humans(self):
         Hog = cv2.HOGDescriptor()
         Hog.setSVMDetector(cv2.HOGDescriptor.getDefaultPeopleDetector())
