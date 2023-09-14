@@ -28,29 +28,29 @@ class DroneController:
         self._weights: tuple
 
         # Drone control branches
-        self.tracking_thread = custom_threads.LoopThread(self._tracking_control)
-        self.WASD_thread = custom_threads.LoopThread(self._WASD_control)
+        self._tracking_thread = custom_threads.LoopThread(self._tracking_control)
+        self._WASD_thread = custom_threads.LoopThread(self._WASD_control)
 
-        self.tracking_thread.daemon = True
-        self.WASD_thread.daemon = True
+        self._tracking_thread.daemon = True
+        self._WASD_thread.daemon = True
 
-        self.tracking_thread.pause(True)
-        self.WASD_thread.pause(True)
+        self._tracking_thread.pause(True)
+        self._WASD_thread.pause(True)
 
-        self.tracking_thread.start()
-        self.WASD_thread.start()
+        self._tracking_thread.start()
+        self._WASD_thread.start()
 
     def __del__(self):
-        self.tracking_thread.stop()
-        self.WASD_thread.stop()
+        self._tracking_thread.stop()
+        self._WASD_thread.stop()
 
     def start_WASD(self):
-        self.tracking_thread.pause(True)
-        self.WASD_thread.pause(False)
+        self._tracking_thread.pause(True)
+        self._WASD_thread.pause(False)
 
     def start_tracking(self):
-        self.WASD_thread.pause(True)
-        self.tracking_thread.pause(False)
+        self._WASD_thread.pause(True)
+        self._tracking_thread.pause(False)
 
     def get_current_targets(self):
         return self._rects, self._weights
