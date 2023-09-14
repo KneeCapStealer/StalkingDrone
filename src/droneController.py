@@ -17,7 +17,7 @@ class DroneController:
             self.w: float = 0
             self.h: float = 0
 
-    class WASDControls():
+    class WASDControls:
         def __init__(self):
             self.w: bool = False
             self.a: bool = False
