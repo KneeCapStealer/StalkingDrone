@@ -31,7 +31,6 @@ def main():
     landButton = UI.Button(screen, "Land", IMAGELandDrone, 300, 100, 100, 100, droneController.stop_drone)
     trackButton = UI.Button(screen, "Track", IMAGEManuelMode, 300, 250, 100, 100, droneController.start_tracking)
 
-
     running = True
     while running:
         events = pg.event.get()

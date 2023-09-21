@@ -1,46 +1,35 @@
 import cv2
+import djitellopy
 import custom_threads
 from djitellopy import Tello, BackgroundFrameRead
 import pygame as pg
 import numpy as np
 
 
-def init_recording(drone: Tello):
-    drone.streamoff()
-    drone.streamon()
-    return drone.get_frame_read()
+class VideoStream:
+    def __init__(self, drone: Tello):
+        drone.streamoff()
+        drone.streamon()
 
+        self._videoStream = drone.get_frame_read()
+        self._currentFrame = self._videoStream.frame
+        self.__updaterThread = custom_threads.LoopThread(self.__update_frame_read)
+        self.__updaterThread.start()
 
-def frame_read_2_surface(frame_read: BackgroundFrameRead) -> pg.surface:
-    frame = cv2.cvtColor(frame_read.frame, cv2.COLOR_BGR2RGB)
-    frame = np.rot90(frame)
-    frame = np.flipud(frame)
+    def __del__(self):
+        self.__updaterThread.stop()
 
-    frame = pg.surfarray.make_surface(frame)
-    return pg.transform.scale_by(frame, 1.1)
+    def get_current_frame(self):
+        return self._currentFrame
 
+    def get_current_frame_as_surface(self):
+        outFrame = cv2.cvtColor(self._currentFrame, cv2.COLOR_BGR2RGB)
+        outFrame = np.rot90(outFrame)
+        outFrame = np.flipud(outFrame)
 
-class Recorder:
-    def __init__(self, drone: Tello, screen):
-        self.drone = drone
+        outFrame = pg.surfarray.make_surface(outFrame)
+        return pg.transform.scale_by(outFrame, 1.1)
 
+    def __update_frame_read(self):
+        self._currentFrame = self._videoStream.frame
 
-
-        self.__keepRecording = False
-
-        self.screen = screen
-        self.frame_read = drone.get_frame_read()
-
-    def open_live_recording(self):
-        self.__keepRecording = True
-        recorder = Thread(target=self.video_recorder)
-        recorder.start()
-
-    def close_live_recording(self):
-        self.__keepRecording = False
-
-    def video_recorder(self):
-        while self.__keepRecording:
-            frame = self.frame_read.frame
-
-            return frame
