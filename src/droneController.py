@@ -7,6 +7,7 @@ import cv2
 
 # Own Scripts
 import custom_threads
+import record
 
 
 class DroneController:
@@ -31,11 +32,11 @@ class DroneController:
             self.speed_up: bool = False
             self.speed_down: bool = False
 
-    def __init__(self, drone: Tello, frame_read):
+    def __init__(self, drone: Tello, videoStream: record.VideoStream):
         self.tracking_data: DroneController.TrackingData = DroneController.TrackingData()
         self._lock = threading.Lock()
         self.drone = drone
-        self.frame_read = frame_read
+        self.videoStream = videoStream
 
         self.WASDControls: DroneController.WASDControls = DroneController.WASDControls()
 
@@ -96,8 +97,8 @@ class DroneController:
         Hog = cv2.HOGDescriptor()
         Hog.setSVMDetector(cv2.HOGDescriptor.getDefaultPeopleDetector())
 
-        height, width, _ = self.frame_read.frame.shape
-        frame = cv2.resize(self.frame_read.frame, (width, height))
+        height, width, _ = self.videoStream.get_current_frame().shape
+        frame = cv2.resize(self.videoStream.get_current_frame(), (width, height))
         gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         self._rects, self._weights = Hog.detectMultiScale(gray_frame, winStride=(4, 4), padding=(4, 4), scale=1.05)

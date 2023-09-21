@@ -23,9 +23,9 @@ def main():
     tello = Tello()
     tello.connect()
 
-    frame_read = record.init_recording(tello)
+    videoStream = record.VideoStream(tello)
 
-    droneController = DroneController(tello, frame_read)
+    droneController = DroneController(tello, videoStream)
 
     takeOffButton = UI.Button(screen, "Take off", IMAGETakeoffDrone, 100, 100, 100, 100, droneController.start_drone)
     landButton = UI.Button(screen, "Land", IMAGELandDrone, 300, 100, 100, 100, droneController.stop_drone)
@@ -43,7 +43,7 @@ def main():
                     running = False
 
         # get video feed and render it to pygame
-        screen.blit(record.frame_read_2_surface(frame_read), (0, 0))
+        screen.blit(videoStream.get_current_frame_as_surface(), (0, 0))
         takeOffButton.draw()
         landButton.draw()
         trackButton.draw()
