@@ -1,14 +1,15 @@
-import cv2
 from djitellopy import Tello
 import pygame as pg
-from record import Recorder
+import record
 import UI
 from droneController import DroneController
 
 
 def main():
+    print("Started program")
     screen = pg.display.set_mode([1056, 792])
 
+    print("Created screen")
     clock = pg.time.Clock()
     FPS = 60
 
@@ -21,14 +22,15 @@ def main():
 
     tello = Tello()
     tello.connect()
-    tello.streamon()
-    record = Recorder(tello, screen)
-    record.open_live_recording()
 
-    takeOffButton = UI.Button(screen, "Take off", IMAGETakeoffDrone, 100, 100, 100, 100, tello)
-    landButton = UI.Button(screen, "Land", IMAGELandDrone, 300, 100, 100, 100, tello)
+    frame_read = record.init_recording(tello)
 
-    drone_controller = DroneController(tello)
+    droneController = DroneController(tello, frame_read)
+
+    takeOffButton = UI.Button(screen, "Take off", IMAGETakeoffDrone, 100, 100, 100, 100, droneController.start_drone)
+    landButton = UI.Button(screen, "Land", IMAGELandDrone, 300, 100, 100, 100, droneController.stop_drone)
+    trackButton = UI.Button(screen, "Track", IMAGEManuelMode, 300, 250, 100, 100, droneController.start_tracking)
+
 
     running = True
     while running:
@@ -36,28 +38,31 @@ def main():
         for event in events:
             if event.type == pg.QUIT:
                 running = False
-                record.close_live_recording()
 
             elif event.type == pg.KEYUP:
                 if event.key == pg.K_ESCAPE:
                     running = False
-                    record.close_live_recording()
 
-        screen.blit(record.video_recorder(), (0, 0))
+        # get video feed and render it to pygame
+        screen.blit(record.frame_read_2_surface(frame_read), (0, 0))
+        takeOffButton.draw()
+        landButton.draw()
+        trackButton.draw()
+        UI.draw_target_box(screen, droneController.get_current_targets()[0], 0)
 
         # time_since_program_launch()
         UI.draw_user_interface(screen)
         UI.render_text(screen, str(tello.get_battery()), 100, 500, 32)
-        takeOffButton.update(events, "Take off")
-        takeOffButton.draw()
 
-        landButton.update(events, "Land")
-        landButton.draw()
+        # Check for button presses
+        takeOffButton.update(events)
+        landButton.update(events)
+        trackButton.update(events)
 
         pg.display.update()
 
-    tello.end()
     tello.streamoff()
+    tello.end()
 
 
 def time_since_program_launch():

@@ -1,15 +1,13 @@
 import pygame
 import pygame as pg
-import numpy as np
-from djitellopy import Tello
 
-:)
-def draw_target_box(screen, rects: tuple, current_target_index: int, target_color=(0, 255, 0), rest_color=(255, 255, 0)):
 
+def draw_target_box(screen, rects: tuple, current_target_index: int, def_color=(255, 255, 0), target_color=(0, 255, 0)):
     for i, rect in enumerate(rects):
-        pyrect = pygame.Rect(rect)
-        # TODO: surface :)
-        screen.blit(pyrect, )
+        pygame.draw.rect(
+            screen,
+            target_color if i == current_target_index else def_color,
+            pygame.Rect(rect))
 
 
 def draw_user_interface(screen):
@@ -50,13 +48,13 @@ def render_text(screen, text, xPos, yPos, size):
 
 
 class Button:
-    def __init__(self, screen, text, image, buttonxPos, buttonyPos, width, height, drone):
+    def __init__(self, screen, text, image, buttonxPos, buttonyPos, width, height, func):
         super().__init__()
         self.screen = screen
         self.image = image
         self.text = text
         self.rect = pg.Rect(buttonxPos, buttonyPos, width, height)
-        self.drone = drone
+        self.func = func
 
     def apply_text(self, text):
         font = pg.font.Font('freesansbold.ttf', 13)
@@ -79,17 +77,11 @@ class Button:
 
         self.screen.blit(scaledImage, [scaledImagexPos, scaledImageyPos])
 
-    def update(self, events, action):
+    def update(self, events):
         for event in events:
             if event.type == pg.MOUSEBUTTONUP:
                 if self.rect.collidepoint(event.pos):
-                    if action == "Take off":
-                        print("takeoff")
-                        self.drone.takeoff()
-
-                    elif action == "Land":
-                        print("land")
-                        self.drone.land()
+                    self.func()
 
     def draw(self):
         pg.draw.rect(self.screen, [255, 119, 0], self.rect)

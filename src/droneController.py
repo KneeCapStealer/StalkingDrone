@@ -31,17 +31,17 @@ class DroneController:
             self.speed_up: bool = False
             self.speed_down: bool = False
 
-    def __init__(self, drone: Tello):
+    def __init__(self, drone: Tello, frame_read):
         self.tracking_data: DroneController.TrackingData = DroneController.TrackingData()
         self._lock = threading.Lock()
         self.drone = drone
-        self.frame_read = drone.get_frame_read()
+        self.frame_read = frame_read
 
         self.WASDControls: DroneController.WASDControls = DroneController.WASDControls()
 
         self._tracking_index: int = 0
-        self._rects: tuple
-        self._weights: tuple
+        self._rects: tuple = ((0, 0, 0, 0),)
+        self._weights: tuple = (0,)
 
         # Drone control branches
         self._tracking_thread = custom_threads.LoopThread(self._tracking_control)
@@ -59,6 +59,12 @@ class DroneController:
     def __del__(self):
         self._tracking_thread.stop()
         self._WASD_thread.stop()
+
+    def start_drone(self):
+        self.drone.takeoff()
+
+    def stop_drone(self):
+        self.drone.land()
 
     def start_WASD(self):
         self._tracking_thread.pause(True)
