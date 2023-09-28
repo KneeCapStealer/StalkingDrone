@@ -6,26 +6,28 @@ from djitellopy import Tello
 
 # Custom Scripts
 import custom_threads
+import record
+from droneController import DroneController
 
 
-def func(var1):
+if __name__ == "__main__":
 
-    print(var1)
+    tello = Tello()
+    tello.connect()
+
+    tello.streamon()
+    tello.takeoff()
+
+    rec = record.Recorder(tello)
+    rec.open_live_recording()
+
+    droneController = DroneController(tello, (1280, 720))
+    droneController.start_tracking()
+
+    sleep(10)
+
+    rec.close_live_recording()
+    tello.streamoff()
+    tello.land()
 
 
-def test(var1, bob, foo):
-    print(var1)
-    print(bob)
-    print(foo)
-
-
-lock = threading.Lock()
-
-t = custom_threads.LoopThread(test, 'hello', 21, False)
-t2 = custom_threads.LoopThread(test, 'oh shied', 55, True)
-
-t2.start()
-t.start()
-t.pause(True)
-t2.stop()
-t.stop()
