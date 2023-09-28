@@ -16,18 +16,18 @@ if __name__ == "__main__":
     tello.connect()
 
     tello.streamon()
-    tello.takeoff()
+    # tello.takeoff()
 
     rec = record.Recorder(tello)
     rec.open_live_recording()
 
-    droneController = DroneController(tello, (1280, 720))
-    droneController.start_tracking()
+    # droneController = DroneController(tello, (800, 300))
+    # droneController.start_tracking()
 
-    sleep(10)
+    sleep(20)
 
     rec.close_live_recording()
     tello.streamoff()
-    tello.land()
+    # tello.land()
 
 

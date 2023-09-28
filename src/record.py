@@ -19,10 +19,11 @@ class Recorder:
 
     def __video_recorder(self):
         height, width, _ = self.frame_read.frame.shape
-
+        print(f"h: {height}\t\tw: {width}")
         while self.__keepRecording:
-            frame = cv2.resize(self.frame_read.frame, (width, height))
-            cv2.imshow('Input', frame)
+            frame = cv2.resize(self.frame_read.frame, (width*2, height*2))
+            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            cv2.imshow('Input', rgb_frame)
             c = cv2.waitKey(1)
             if c == 27:
                 break
