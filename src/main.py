@@ -10,15 +10,16 @@ def main():
     screen = pg.display.set_mode([1056, 792])
 
     print("Created screen")
-    clock = pg.time.Clock()
-    FPS = 60
+
 
     IMAGETakeoffDrone = pg.image.load("../pictures/Icons/Drone_takeoff.png")
     IMAGELandDrone = pg.image.load("../pictures/Icons/Drone_land.png")
     IMAGEManuelMode = pg.image.load("../pictures/Icons/Manuel_mode.png")
 
-    clock.tick(FPS)
+    # clock.tick(FPS)
     pg.init()
+
+    font = pg.font.Font('freesansbold.ttf', 50)
 
     tello = Tello()
     tello.connect()
@@ -30,6 +31,8 @@ def main():
     takeOffButton = UI.Button(screen, "Take off", IMAGETakeoffDrone, 100, 100, 100, 100, droneController.start_drone)
     landButton = UI.Button(screen, "Land", IMAGELandDrone, 300, 100, 100, 100, droneController.stop_drone)
     trackButton = UI.Button(screen, "Track", IMAGEManuelMode, 300, 250, 100, 100, droneController.start_tracking)
+
+    num = 0
 
     running = True
     while running:
@@ -49,9 +52,10 @@ def main():
         trackButton.draw()
         UI.draw_target_box(screen, droneController.get_current_targets()[0], 0)
 
+        UI.render_text(screen, str(num), 10, 10, font)
         # time_since_program_launch()
         UI.draw_user_interface(screen)
-        UI.render_text(screen, str(tello.get_battery()), 100, 500, 32)
+        # UI.render_text(screen, str(tello.get_battery()), 100, 500, 32)
 
         # Check for button presses
         takeOffButton.update(events)
@@ -59,6 +63,7 @@ def main():
         trackButton.update(events)
 
         pg.display.update()
+        num += 1
 
     tello.streamoff()
     tello.end()

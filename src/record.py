@@ -1,9 +1,8 @@
 import threading
 
 import cv2
-import djitellopy
 import custom_threads
-from djitellopy import Tello, BackgroundFrameRead
+from djitellopy import Tello
 import pygame as pg
 import numpy as np
 
@@ -16,6 +15,7 @@ class VideoStream:
         self._videoStream = drone.get_frame_read()
         self._currentFrame = self._videoStream.frame
         self.__updaterThread = custom_threads.LoopThread(self.__update_frame_read)
+        self.__updaterThread.daemon = True
         self.__updaterThread.start()
         self._lock = threading.Lock()
 

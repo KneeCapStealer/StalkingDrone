@@ -36,8 +36,7 @@ def draw_user_interface(screen):
     pg.draw.circle(screen, orangeColor, [1056 - mapRadius, mapRadius], mapRadius)
 
 
-def render_text(screen, text, xPos, yPos, size):
-    font = pg.font.Font('freesansbold.ttf', size)
+def render_text(screen, text, xPos, yPos, font: pg.font.Font):
     textWithStuff = font.render(text, True, [0, 0, 0])
 
     textRect = textWithStuff.get_rect()
@@ -55,10 +54,16 @@ class Button:
         self.text = text
         self.rect = pg.Rect(buttonxPos, buttonyPos, width, height)
         self.func = func
+        self.font = pg.font.Font('freesansbold.ttf', 13)
+
+        # Scale image
+        imageWidth = self.image.get_width()
+
+        scaleFactor = self.rect.width / (imageWidth + imageWidth / 2)
+        image = pg.transform.scale_by(self.image, scaleFactor)
 
     def apply_text(self, text):
-        font = pg.font.Font('freesansbold.ttf', 13)
-        textWithStuff = font.render(text, True, [0, 0, 0])
+        textWithStuff = self.font.render(text, True, [0, 0, 0])
 
         textRect = textWithStuff.get_rect()
         textRect.centerx = self.rect.centerx
@@ -68,14 +73,10 @@ class Button:
 
     def apply_image(self):
         imageWidth = self.image.get_width()
+        imageXPos = self.rect.centerx - imageWidth / 2
+        imageYPos = self.rect.top + (self.rect.width - imageWidth) / 2
 
-        scaleFactor = self.rect.width / (imageWidth + imageWidth / 2)
-        scaledImage = pg.transform.scale_by(self.image, scaleFactor)
-        scaledImageWidth = scaledImage.get_width()
-        scaledImagexPos = self.rect.centerx - scaledImageWidth / 2
-        scaledImageyPos = self.rect.top + (self.rect.width - scaledImageWidth) / 2
-
-        self.screen.blit(scaledImage, [scaledImagexPos, scaledImageyPos])
+        self.screen.blit(self.image, [imageXPos, imageYPos])
 
     def update(self, events):
         for event in events:
