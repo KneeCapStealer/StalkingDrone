@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="262d50d0-aacd-4d5d-b92a-92b875170d08" name="Changes" comment="Uptimized performance a lot" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="remoteTracking" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2TmyQ8PFRqHeqxC3YtWv7mWe31I" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="262d50d0-aacd-4d5d-b92a-92b875170d08" name="Changes" comment="" />
+      <created>1691662539338</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1691662539338</updated>
+      <workItem from="1691662540953" duration="1490000" />
+      <workItem from="1692339736532" duration="666000" />
+      <workItem from="1692867839305" duration="8498000" />
+      <workItem from="1693477469437" duration="8138000" />
+      <workItem from="1693553377297" duration="2104000" />
+      <workItem from="1694002549422" duration="9163000" />
+      <workItem from="1694682384722" duration="8360000" />
+      <workItem from="1695287865972" duration="306000" />
+      <workItem from="1695288203999" duration="8011000" />
+      <workItem from="1697025299304" duration="1894000" />
+    </task>
+    <task id="LOCAL-00001" summary="Made wasd.py file to handle all WASD controls.">
+      <created>1692869435550</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1692869435550</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Included WASD controls into main file">
+      <created>1692869959676</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1692869959676</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Better named variables">
+      <created>1692870086626</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692870086626</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added debugging to the WASD controls and made input on release.">
+      <created>1692870629763</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692870629764</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fixed input, using Pygame">
+      <created>1692876139738</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692876139738</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Implemented test of live recording">
+      <created>1692946913657</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692946913657</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Custom Thread Made">
+      <created>1693479129218</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1693479129218</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fixed the threads to take in args and keyword args">
+      <created>1693486166923</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1693486166923</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Renamed Thread class to LoopThread and added documentation">
+      <created>1693554757104</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1693554757104</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Started threads in init and stopping them in del while making 2 functions to start tracking and wasd controls">
+      <created>1694007232328</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1694007232328</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Implemented switching between targets">
+      <created>1694079988940</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1694079988940</updated>
+    </task>
+    <task id="LOCAL-00012" summary="sorted targets by x-axis">
+      <created>1694081986854</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1694081986854</updated>
+    </task>
+    <task id="LOCAL-00013" summary="made threads protected in droneController class">
+      <created>1694683355670</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1694683355670</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added WASD controls class/struct to give dronecontroller class input">
+      <created>1694683583268</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1694683583268</updated>
+    </task>
+    <task id="LOCAL-00015" summary="removed redundant parentheses">
+      <created>1694683614894</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1694683614894</updated>
+    </task>
+    <task id="LOCAL-00016" summary="removed enter">
+      <created>1694687058757</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1694687058757</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Made Recorder class into 2 functions">
+      <created>1695288680510</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1695288680510</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Made VideoStream class to update display">
+      <created>1695289840973</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1695289840973</updated>
+    </task>
+    <task id="LOCAL-00019" summary="used videostream class to hopefully fix lag">
+      <created>1695291398781</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1695291398781</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Uptimized performance a lot">
+      <created>1697026632959</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1697026632959</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Made wasd.py file to handle all WASD controls." />
+    <MESSAGE value="Included WASD controls into main file" />
+    <MESSAGE value="Better named variables" />
+    <MESSAGE value="Added debugging to the WASD controls and made input on release." />
+    <MESSAGE value="Fixed input, using Pygame" />
+    <MESSAGE value="Implemented test of live recording" />
+    <MESSAGE value="Custom Thread Made" />
+    <MESSAGE value="Fixed the threads to take in args and keyword args" />
+    <MESSAGE value="Renamed Thread class to LoopThread and added documentation" />
+    <MESSAGE value="Started threads in init and stopping them in del while making 2 functions to start tracking and wasd controls" />
+    <MESSAGE value="Implemented switching between targets" />
+    <MESSAGE value="sorted targets by x-axis" />
+    <MESSAGE value="made threads protected in droneController class" />
+    <MESSAGE value="Added WASD controls class/struct to give dronecontroller class input" />
+    <MESSAGE value="removed redundant parentheses" />
+    <MESSAGE value="removed enter" />
+    <MESSAGE value="Made Recorder class into 2 functions" />
+    <MESSAGE value="Made VideoStream class to update display" />
+    <MESSAGE value="used videostream class to hopefully fix lag" />
+    <MESSAGE value="Uptimized performance a lot" />
+    <option name="LAST_COMMIT_MESSAGE" value="Uptimized performance a lot" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/StalkingDrone$droneController.coverage" NAME="droneController Coverage Results" MODIFIED="1694689522792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/StalkingDrone$record.coverage" NAME="record Coverage Results" MODIFIED="1695293108957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/StalkingDrone$main.coverage" NAME="main Coverage Results" MODIFIED="1695294607944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/StalkingDrone$custom_threads.coverage" NAME="custom_threads Coverage Results" MODIFIED="1693485676705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+  </component>
+</project>
